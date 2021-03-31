@@ -1,4 +1,4 @@
-  <?php
+<?php
 	//connettersi al database
 	require_once 'connect.php';
 	$conn = new mysqli('localhost', $usernameSql, $passwordSql, $usernameSql);
@@ -60,15 +60,22 @@
 	
 	//inserire in mysql
 	if ($valid) {
-		
-		$sql = "INSERT INTO utenti (username, password, email)
-		VALUES ('$username', '$password', '$email')";
-		
-		if ($conn->query($sql) === TRUE) {
-			//ciao octy
+		$query = mysqli_query($conn, "SELECT username, password, email FROM utenti WHERE email='$email'");
+		$fromObj = mysqli_fetch_assoc($query);
+		if(count($fromObj) > 0) {
+			echo"<br>Email gia\' in utilizzo";
+			
 		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
+			$sql = "INSERT INTO utenti (username, password, email) VALUES ('$username', '$password', '$email')";
+			
+			if ($conn->query($sql) === TRUE) {
+				echo "<br>registrazione completata con successo";
+			} else {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+			}
+			
 		}
 			
     }
+    echo "<br>Se avete finito la registrazione, proseguite qui: <a href=\"http://ferme.eu5.org/signin.html\">accedi</a>";
 ?>
