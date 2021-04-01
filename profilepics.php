@@ -5,16 +5,20 @@
 	if ($conn->connect_error) {
 		die("Errore di connessione!");
 	}
-	
-	echo $_SESSION["user"];
-	$im = $_POST['immagini'];
-	/*
-	$sql = "INSERT INTO utenti (picture) VALUES ('$im')";
+	session_start();
+	$userID = $_SESSION["user"];
+	$im = $_POST["immagini"];
+	$set = $im;
+	$sql = "UPDATE utenti SET picture = '$im' WHERE user_id = '$userID'";
 		
 	if ($conn->query($sql) === TRUE) {
-		//ciao octy
+		if (isset($set)) {
+			echo "immagine profilo cambiato con successo <br>";
+			echo 'proseguite qui: <a href="http://ferme.eu5.org/profilo.html">Profilo</a>';
+		} 
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
-	}*/
+	}
+	
 
 ?>

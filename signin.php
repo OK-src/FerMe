@@ -1,11 +1,4 @@
 <?php
-	//ricerca di cookie precedenti
-	$cookie = $_COOKIE['id'];
-	if ($old_cookie != NULL){
-		$_SESSION['id'] = $cookie;
-		header("location: /index.html");
-	}
-	
 	//connettersi al database
 	require_once 'connect.php';
 	$conn = new mysqli('localhost', $usernameSql, $passwordSql, $usernameSql);
@@ -28,11 +21,8 @@
 		$sessionVar = $fromObj['user_id'];
 		session_start();
 		$_SESSION["user"] = $sessionVar;
+		echo 'Proseguite qui per scegliere una foto profilo: <a href="http://ferme.eu5.org/profilepics.html">foto</a>';
 	
-		//scrittura del cookie
-		if ($_POST['cookie'] == "1"){
-			setcookie('id', $sql);
-		}
-	} else echo "Ricontrollate il password";
+	} else {echo "Ricontrollate il password";}
 	
 ?>

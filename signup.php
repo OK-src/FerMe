@@ -62,7 +62,7 @@
 	if ($valid) {
 		$query = mysqli_query($conn, "SELECT username, password, email FROM utenti WHERE email='$email'");
 		$fromObj = mysqli_fetch_assoc($query);
-		if(count($fromObj) > 0) {
+		if(@count($fromObj) > 0) {
 			echo"<br>Email gia\' in utilizzo";
 			
 		} else {
