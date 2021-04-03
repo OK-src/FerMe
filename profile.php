@@ -9,6 +9,10 @@
 	session_start();
 	$id = $_SESSION["user"];
 	
+	if (!isset($id)){
+		header("Location:signin.html");
+	}
+	
 	$query = mysqli_query($conn, "SELECT username, password, email, picture FROM utenti WHERE user_id='$id'");
 	$fromObj = mysqli_fetch_assoc($query);
 ?>
