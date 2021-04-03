@@ -74,8 +74,15 @@
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
 			
+			//iniziare session
+			$query = mysqli_query($conn, "SELECT user_id FROM `utenti` WHERE email='$email'");
+			$fromObj = mysqli_fetch_assoc($query);
+			$sessionVar = $fromObj['user_id'];
+			session_start();
+			$_SESSION["user"] = $sessionVar;
+			
 		}
 			
-    }
-    echo "<br>Se avete finito la registrazione, proseguite qui: <a href=\"http://ferme.eu5.org/signin.html\">accedi</a>";
+    } else echo '<br><a href="http://ferme.eu5.org/signup.html">ricarica</a><br>';
+    echo "<br>Se avete finito la registrazione, proseguite qui: <a href=\"http://ferme.eu5.org/profilepics.html\">cambia foto profilo</a>";
 ?>

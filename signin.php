@@ -21,8 +21,8 @@
 		$sessionVar = $fromObj['user_id'];
 		session_start();
 		$_SESSION["user"] = $sessionVar;
-		echo 'Proseguite qui per scegliere una foto profilo: <a href="http://ferme.eu5.org/profilepics.html">foto</a>';
+		echo 'cliccare <a href="http://ferme.eu5.org/index.html">qui</a> per continuare al sito';
 	
-	} else {echo "Ricontrollate il password";}
+	} else {echo 'Ricontrollate il password o email <a href="http://ferme.eu5.org/signin.html">ricarica</a>';}
 	
 ?>

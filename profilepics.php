@@ -14,7 +14,7 @@
 	if ($conn->query($sql) === TRUE) {
 		if (isset($set)) {
 			echo "immagine profilo cambiato con successo <br>";
-			echo 'proseguite qui: <a href="http://ferme.eu5.org/profilo.html">Profilo</a>';
+			echo 'proseguite qui: <a href="http://ferme.eu5.org/profile.php">Profilo</a>';
 		} 
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
