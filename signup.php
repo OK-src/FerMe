@@ -10,12 +10,12 @@
 	$valid = true;
 	
 	//ricevere informazioni da html
-    $username = $_POST['username'];
+    $username = san($conn, $_POST['username']);
     
-    $password = $_POST['password'];
-    $passwordConf = $_POST['passwordConf'];
+    $password = san($conn, $_POST['password']);
+    $passwordConf = san($conn, $_POST['password']);
     
-    $email = $_POST['email'];
+    $email = san($conn, $_POST['email']);
 	
     //validazione username
     if (strlen($username)>25) {
@@ -63,7 +63,7 @@
 		$query = mysqli_query($conn, "SELECT username, password, email FROM utenti WHERE email='$email'");
 		$fromObj = mysqli_fetch_assoc($query);
 		if(@count($fromObj) > 0) {
-			echo"<br>Email gia\' in utilizzo";
+			echo"<br>Email gia' in utilizzo<br><a href=\"http://ferme.eu5.org/signup.html\">ricarica</a>";
 			
 		} else {
 			$sql = "INSERT INTO utenti (username, password, email) VALUES ('$username', '$password', '$email')";

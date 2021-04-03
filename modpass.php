@@ -21,13 +21,29 @@
 		$passwordModConf = $_POST['modPassConf'];
 		
 		if ($passwordMod == $passwordModConf) {
+			
+			//validazione password
+			$valid = true;	
+			if (strlen($passwordMod) > 250) {
+				$valid = false;
+				echo 'Il password e\' troppo lungo';
+			}
+		
+			if (strlen($passwordMod) < 6) {
+				$valid = false;
+				echo 'Il password e\' troppo corto, scegliete uno piu\' potente';
+			}
+			
+			
 			$password = hash('sha256', $passwordMod);
 			$sql = "UPDATE utenti SET password = '$password' WHERE user_id = '$id'";
 			
-			if ($conn->query($sql) === TRUE) {
-				echo "password cambiato con successo <br>";
-				echo 'Proseguite <a href="http://ferme.eu5.org/profile.php">qui</a>';
-			}
+			if ($valid) {
+				if ($conn->query($sql) === TRUE) {
+					echo "password cambiato con successo <br>";
+					echo 'Proseguite <a href="http://ferme.eu5.org/profile.php">qui</a>';
+				}
+			} else echo '<br><a href="http://ferme.eu5.org/modpass.html">ricarica</a>';
 			
 		} else echo 'I due password non sono uguali, <a href="http://ferme.eu5.org/modpass.html">ricarica</a> <br>';
 		

@@ -7,7 +7,7 @@
 	}
 	
 	//recupero input da signin.html
-	$email = $_POST['email'];
+	$email = san($conn, $_POST['email']);
 	$password = hash('sha256', $_POST['password']);
 	
 	$query = mysqli_query($conn, "SELECT password FROM `utenti` WHERE email='$email'") or die ("Ricontrollate l\'email inserito");
